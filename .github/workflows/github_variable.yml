@@ -1,17 +1,17 @@
-name: Use GitHub Repository Variable
+name: Access ID Workflow
 
 on:
   push:
     branches:
-      - '**'  # Trigger workflow on every push to any branch
+      - '**'  # Runs on any branch push
 
 jobs:
-  use_variable:
-    runs-on: ubuntu-latest  # ✅ Ensure it runs on 'ubuntu-latest'
+  test-job:
+    runs-on: ubuntu-latest  # ✅ Ensuring the correct runner
 
     steps:
-      - name: Checkout Repository
+      - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Retrieve and Print ACCESS_ID
+      - name: Print ACCESS_ID
         run: echo "The ACCESS_ID is ${{ vars.ACCESS_ID }}"
