@@ -27,9 +27,11 @@ jobs:
       - name: Run Tests with Coverage
         run: |
           pytest --cov=script --cov-report=term --cov-report=xml
+          ls -lah coverage.xml  # Debugging step
 
       - name: Upload Coverage Report
         uses: codecov/codecov-action@v3
         with:
           file: coverage.xml
           fail_ci_if_error: true
+          verbose: true  # Enable detailed logs
