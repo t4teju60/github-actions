@@ -25,7 +25,7 @@ jobs:
       - name: Wait for PostgreSQL to be ready
         run: |
           echo "Waiting for PostgreSQL to be ready..."
-          until nc -z localhost 5432; do
+          while ! nc -z localhost 5432; do
             echo "PostgreSQL is not ready yet. Retrying in 1s..."
             sleep 1
           done
