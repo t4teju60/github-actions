@@ -25,10 +25,4 @@ jobs:
           pip install pytest pytest-cov
 
       - name: Run Tests with Coverage
-        run: pytest --cov=script --cov-report=term --cov-report=xml
-
-      - name: Upload Coverage Report
-        uses: codecov/codecov-action@v3
-        with:
-          files: ./coverage.xml
-          fail_ci_if_error: true
+        run: pytest --cov=script --cov-report=term
