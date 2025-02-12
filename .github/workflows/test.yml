@@ -1,37 +1,24 @@
-name: Run Automated Tests
+name: Run Tests
 
-on:
-  push:
-    branches:
-      - main
-  pull_request:
+on: [push, pull_request]
 
 jobs:
   test:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout Code
-        uses: actions/checkout@v3
+    - name: Checkout code
+      uses: actions/checkout@v2
 
-      - name: Set Up Python
-        uses: actions/setup-python@v4
-        with:
-          python-version: '3.x'
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.x'
 
-      - name: Install Dependencies
-        run: |
-          python -m pip install --upgrade pip
-          pip install pytest pytest-cov
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install pytest pytest-cov
 
-      - name: Run Tests with Coverage
-        run: |
-          pytest --cov=script --cov-report=term --cov-report=xml
-          ls -lah coverage.xml  # Debugging step
-
-      - name: Upload Coverage Report
-        uses: codecov/codecov-action@v3
-        with:
-          file: coverage.xml
-          fail_ci_if_error: true
-          verbose: true  # Enable detailed logs
+    - name: Run tests with coverage
+      run: pytest --cov=.
