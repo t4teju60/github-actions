@@ -1,0 +1,23 @@
+---
+- name: Configure server1 as a web server
+  hosts: webservers
+  become: yes
+  tasks:
+    - name: Install Nginx
+      apt:
+        name: nginx
+        state: present
+      tags: nginx
+
+    - name: Start and enable Nginx service
+      service:
+        name: nginx
+        state: started
+        enabled: yes
+      tags: nginx
+
+    - name: Create welcome page
+      copy:
+        content: "Welcome to Ansible Lab!"
+        dest: /var/www/html/index.html
+      tags: welcome
