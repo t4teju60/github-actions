@@ -1,24 +1,26 @@
-name: Run Tests
+name: Run Pytest
 
-on: [push, pull_request]
+on:
+  push:
+    branches:
+      - main
+  pull_request:
 
 jobs:
   test:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v2
+      - name: Checkout Code
+        uses: actions/checkout@v3
 
-    - name: Set up Python
-      uses: actions/setup-python@v2
-      with:
-        python-version: '3.x'
+      - name: Set Up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
 
-    - name: Install dependencies
-      run: |
-        python -m pip install --upgrade pip
-        pip install pytest pytest-cov
+      - name: Install Dependencies
+        run: pip install pytest pytest-cov
 
-    - name: Run tests with coverage
-      run: pytest --cov=.
+      - name: Run Tests
+        run: pytest test_script.py --cov=script
