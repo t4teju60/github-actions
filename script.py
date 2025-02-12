@@ -10,5 +10,5 @@ def main():
         print(f"Error: {e}")
         exit(1)
 
-if _name_ == "_main_":
+if __name__ == "__main__":
     main()
