@@ -1,0 +1,17 @@
+name: GitHub Variables Test
+
+on:
+  push:
+    branches:
+      - "**"  # Runs on any branch push
+
+jobs:
+  test_variables:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check Out Repository
+        uses: actions/checkout@v4
+
+      - name: Retrieve and Print ACCESS_ID
+        run: echo "The ACCESS_ID is ${{ vars.ACCESS_ID }}"
